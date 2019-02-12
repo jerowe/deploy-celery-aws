@@ -53,9 +53,7 @@ services:
     networks:
       - proxy
     command: |
-      bash -c "./wait-for-it.sh -p 5672 -h rabbit -- gunicorn \
-        --workers=4 --bind=0.0.0.0:5000 --keep-alive=2000 \
-        --timeout=2000 --log-level=debug flask_app:app"
+      bash -c "./wait-for-it.sh -p 5672 -h rabbit -- gunicorn --workers=4 --bind=0.0.0.0:5000 --keep-alive=2000 --timeout=2000 --log-level=debug flask_app:app"
     deploy:
       replicas: 2
       update_config:
@@ -79,8 +77,7 @@ services:
     networks:
       - proxy
     command: |
-      bash -c "./wait-for-it.sh -p 5672 -h rabbit -- celery \
-      -A flask_app.celery worker --concurrency 2"
+      bash -c "./wait-for-it.sh -p 5672 -h rabbit -- celery -A flask_app.celery worker --concurrency 2"
     deploy:
       replicas: 2
       update_config:
@@ -112,9 +109,7 @@ services:
     networks:
       - proxy
     command: |
-      bash -c "./wait-for-it.sh -p 5672 -h rabbit -- celery \
-      -A flask_app.celery flower --host=0.0.0.0 \
-      --port=5555 --url-prefix=flower"
+      bash -c "./wait-for-it.sh -p 5672 -h rabbit -- celery -A flask_app.celery flower --host=0.0.0.0 --port=5555 --url-prefix=flower"
     deploy:
       replicas: 1
       update_config:
@@ -150,8 +145,8 @@ services:
       - proxy
     ports:
       - "80:80"
-      - "443:443"
       - "8080:8080"
+    #      - "443:443"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     deploy:
