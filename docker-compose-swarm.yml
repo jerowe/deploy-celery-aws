@@ -1,12 +1,15 @@
 version: '3'
 
-# Run as
-# docker-compose build; docker-compose up -d
-# Check with
-# docker ps
-# Then check the logs with
-# docker logs --tail 50 $container_id
-# docker-compose logs --tail 20 tf_counts
+# Deploy the stack
+# docker stack deploy -f docker-compose-swarm.yml celery
+# Investigate the service with
+# docker service ls
+# docker service logs celery_rabbit
+# Scale the service with
+# docker service scale celery_job_queue_flask_app=N
+# docker service rm celery_rabbit celery_job_queue_flask_app celery_job_queue_celery_worker job_queue_celery_flower
+# docker system prune
+# And then deploy again
 
 services:
   rabbit:
