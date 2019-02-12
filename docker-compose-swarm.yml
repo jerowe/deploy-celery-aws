@@ -141,7 +141,6 @@ services:
       '--docker.watch=true',
       '--docker.exposedbydefault=false'
     ]
-    container_name: traefik
     labels:
       - traefik.frontend.entryPoints=http
       - traefik.frontend.rule=PathPrefixStrip:/traefik;Host:localhost
