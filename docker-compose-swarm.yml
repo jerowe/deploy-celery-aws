@@ -73,9 +73,7 @@ services:
       CELERY_INSTANCES: 2
       BROKER_URL: "amqp://admin:mypass@rabbit:5672"
       BACKEND_URL: "rpc://"
-    build:
-      context: job_queue
-      dockerfile: Dockerfile
+    image: quay.io/jerowe/job_queue_flask_app:latest
     depends_on:
       - rabbit
     networks:
@@ -100,9 +98,7 @@ services:
       CELERY_INSTANCES: 2
       BROKER_URL: "amqp://admin:mypass@rabbit:5672"
       BACKEND_URL: "rpc://"
-    build:
-      context: job_queue
-      dockerfile: Dockerfile
+    image: quay.io/jerowe/job_queue_flask_app:latest
     depends_on:
       - rabbit
     labels:
