@@ -169,4 +169,4 @@ services:
 
 networks:
   proxy:
-    driver: bridge
+    driver: overlay
